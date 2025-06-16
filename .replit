@@ -1,0 +1,20 @@
+modules = ["nodejs-20"]
+
+[nix]
+packages = ["imagemagick6", "python39Packages.clvm-tools"]
+
+[workflows]
+runButton = "Dev Server"
+
+[[workflows.workflow]]
+name = "Dev Server"
+author = 43646305
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd tiktokaid && npm run dev"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
