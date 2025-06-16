@@ -1,4 +1,14 @@
 {
+  "name": "tiktok-pro",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "openai-example.js",
+  "scripts": {
+    "start": "node openai-example.js"
+  },
+  "dependencies": {
+    "openai": "^4.30.0"
+  },
   "devDependencies": {
     "drizzle-kit": "^0.31.1"
   }
