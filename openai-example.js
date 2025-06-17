@@ -1,19 +1,16 @@
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import dotenv from "dotenv";
+dotenv.config();
 
-import OpenAI from "openai";
+// إعداد المفتاح من متغير البيئة
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Make sure to set this in Replit Secrets
-});
+// اختيار نموذج Gemini
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-const response = await client.chat.completions.create({
-  model: "gpt-4o",
-  messages: [
-    {
-      role: "user",
-      content: "Write a one-sentence bedtime story about a unicorn."
-    }
-  ],
-  max_tokens: 100
-});
+// إرسال رسالة للموديل
+const result = await model.generateContent("Write a one-sentence bedtime story about a unicorn.");
+const response = await result.response;
+const text = response.text();
 
-console.log(response.choices[0].message.content);
+console.log(text);
