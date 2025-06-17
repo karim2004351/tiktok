@@ -2,12 +2,13 @@
   "name": "tiktok-pro",
   "version": "1.0.0",
   "type": "module",
-  "main": "openai-example.js",
+  "main": "gemini-example.js",
   "scripts": {
-    "start": "node openai-example.js"
+    "start": "node gemini-example.js"
   },
   "dependencies": {
-    "openai": "^4.30.0"
+    "@google/generative-ai": "^0.4.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "drizzle-kit": "^0.31.1"
