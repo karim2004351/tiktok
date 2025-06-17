@@ -1,14 +1,19 @@
-class Person {
-  constructor(name, job) {
-    this.name = name;
-    this.job = job;
-  }
+// index.js — نقطة انطلاق تطبيقك
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-  print() {
-    const { name, job } = this;
-    console.log(`${name}, ${job}`);
-  }
-}
+// Serve الواجهة إذا موجودة مجلد client أو dist/public
+const publicPath = path.join(__dirname, 'client');
+app.use(express.static(publicPath));
 
-const thatGuy = new Person("John Doe", "Software Engineer");
-thatGuy.print();
+// إذا تستخدم React SPA
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+// تشغيل السيرفر
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
